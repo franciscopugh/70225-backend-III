@@ -48,7 +48,7 @@ const initalizatePassport = () => {
         
     
     }))
-
+    /*
     passport.use('github', new GithubStrategy({
         clientID: "",
         clientSecret: "",
@@ -76,7 +76,7 @@ const initalizatePassport = () => {
             return done(e)
         }
         
-    }))
+    }))*/
 
     //Pasos necesarios para trabajar via HTTP
     passport.serializeUser((user, done) => {

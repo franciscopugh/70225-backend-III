@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import cartModel from './cart.js'
 
 const userSchema = new Schema({
     first_name: {
@@ -25,6 +26,23 @@ const userSchema = new Schema({
     rol: {
         type: String,
         default: "Usuario"
+    },
+    cart: {
+        type: Schema.Types.ObjectId,
+        ref: "carts"
+    }
+})
+
+//Genero un nuevo carrito al crear un usuario
+userSchema.post('save', async function name(userCreated) {
+    try {
+        const newCart = await cartModel.create({products: []})
+        console.log(newCart);
+        userCreated.cart = newCart._id //Referencia a ese carrito nuevo
+        const mensaje = await userCreated.save()
+        console.log(mensaje);
+    } catch(e) {
+        console.log(e);
     }
 })
 

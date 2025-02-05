@@ -12,6 +12,7 @@ import sessionRouter from './routes/sessions.routes.js'
 import productRouter from './routes/products.routes.js'
 import cartRouter from './routes/carts.routes.js'
 import mongoose from 'mongoose'
+import mocksRouter from './routes/mocks.routes.js'
 //import cluster from 'cluster'
 //import {cpus} from 'os'
 
@@ -25,7 +26,7 @@ app.use(session({
     //retries: Cantidad de veces que el servidor va a intentar leer ese archivo
     //store: new fileStorage({path: './src/sessions', ttl: 10, retries: 1 }),
     store: MongoStore.create({
-        mongoUrl: "mongodb+srv://franciscopugh01:@cluster0.w0js7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+        mongoUrl: "mongodb+srv://franciscopugh01:w3Z4DM51u11LAxZ9@cluster0.w0js7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
         mongoOptions: {},
         ttl: 15
     }),
@@ -34,7 +35,7 @@ app.use(session({
     saveUninitialized: true
 }))
 
-mongoose.connect("mongodb+srv://franciscopugh01:@cluster0.w0js7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("mongodb+srv://franciscopugh01:w3Z4DM51u11LAxZ9@cluster0.w0js7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 .then(() => console.log("DB is connected"))
 .catch((e) => console.log("Error al conectarme a DB:", e))
 
@@ -51,6 +52,7 @@ app.use('/public', express.static(__dirname + '/public')) //Concateno rutas
 app.use('/api/sessions', sessionRouter)
 app.use('/api/products', productRouter)
 app.use('/api/carts', cartRouter)
+app.use('/api/mocks', mocksRouter)
 
 app.post('/', (req,res) => {
     req.logger.warn("Warning!!!!")
