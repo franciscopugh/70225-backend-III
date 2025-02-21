@@ -7,7 +7,6 @@ import { CartModule } from './cart/cart.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import FirstMiddleware from './middlewares/FirstMiddleware';
 
-//"mongodb+srv://franciscopugh01:coder1234@cluster0.w0js7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 @Module({
   imports: [
     ConfigModule.forRoot(),
